@@ -1,0 +1,72 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "airbnb",
+    "airbnb-typescript",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "globals": {
+    "React": true
+  },
+  "plugins": [
+    "react",
+    "react-hooks",
+    "@typescript-eslint",
+    "prettier",
+    "eslint-plugin-import-helpers"
+  ],
+  "rules": {
+    "prettier/prettier": "error",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/display-name": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-props-no-spreading": "off",
+    "newline-before-return": "error",
+    // "no-use-before-define": "off",
+    "import-helpers/order-imports": [
+      "error",
+      {
+        "newlinesBetween": "always",
+        "groups": [
+          ["/^react$/", "/^react-native$/", "/^react-dom$/"],
+          ["/^@//", "/^src//", "/^~//"],
+          "module",
+          ["parent", "sibling", "index"]
+        ],
+        "alphabetize": {
+          "order": "asc",
+          "ignoreCase": true
+        }
+      }
+    ],
+    "sort-imports": [
+      "error",
+      {
+        "ignoreDeclarationSort": true
+      }
+    ],
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": ["function-declaration", "arrow-function"]
+      }
+    ]
+  }
+}
