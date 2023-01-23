@@ -31,7 +31,7 @@ type SearchNewsApiResultError = {
 
 type SearchNewsParams = {
   sortBy?: "relevancy" | "popularity" | "publishedAt";
-  fromDate: Date;
+  fromDate?: Date;
   searchTerm: string;
   pageSize?: number;
   page?: number;
@@ -68,7 +68,7 @@ const searchNewsService = async ({
   >("/everything", {
     params: {
       sortBy,
-      from: format(fromDate, "yyyy-MM-dd"),
+      from: fromDate ? format(fromDate, "yyyy-MM-dd") : undefined,
       q: searchTerm,
       pageSize,
       page,
