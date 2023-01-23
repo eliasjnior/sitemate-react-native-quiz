@@ -1,8 +1,18 @@
+import { SafeAreaView } from "react-native";
+
 import { compose } from "recompose";
 
-import ExampleComponent from "./src/components/ExampleComponent/ExampleComponent";
+import SearchForm from "./src/components/SearchForm/SearchForm";
 import withReactQuery from "./src/hocs/react-query";
 
-const App = () => <ExampleComponent />;
+const App = () => (
+  <SafeAreaView
+    style={{
+      flex: 1
+    }}
+  >
+    <SearchForm />
+  </SafeAreaView>
+);
 
 export default compose(withReactQuery)(App);
