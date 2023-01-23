@@ -2,7 +2,8 @@ import { SafeAreaView } from "react-native";
 
 import { compose } from "recompose";
 
-import SearchForm from "./src/components/SearchForm/SearchForm";
+import SearchForm from "./src/components/SearchPage/SearchPage";
+import withNativeBase from "./src/hocs/native-base";
 import withReactQuery from "./src/hocs/react-query";
 
 const App = () => (
@@ -15,4 +16,4 @@ const App = () => (
   </SafeAreaView>
 );
 
-export default compose(withReactQuery)(App);
+export default compose(withNativeBase, withReactQuery)(App);

@@ -1,5 +1,4 @@
-import { Button, TextInput, View } from "react-native";
-
+import { Box, Button, Input } from "native-base";
 import { Controller, useForm } from "react-hook-form";
 
 type SearchFieldsProps = {
@@ -15,11 +14,7 @@ export type SearchFormData = {
 };
 
 const SearchFields: React.FC<SearchFieldsProps> = ({ onSearch }) => {
-  const {
-    control,
-    handleSubmit,
-    formState: { errors }
-  } = useForm<SearchFormData>({
+  const { control, handleSubmit } = useForm<SearchFormData>({
     defaultValues: {
       searchTerm: "",
       sortBy: "relevancy",
@@ -29,24 +24,20 @@ const SearchFields: React.FC<SearchFieldsProps> = ({ onSearch }) => {
   });
 
   const onSubmit = (data: SearchFormData) => {
-    console.log(data);
     onSearch(data);
   };
 
   return (
-    <View>
+    <Box margin={6}>
       <Controller
         control={control}
         rules={{
           required: true
         }}
         render={({ field: { onChange, onBlur, value } }) => (
-          <TextInput
-            style={{
-              borderWidth: 1,
-              borderColor: "black",
-              padding: 10
-            }}
+          <Input
+            size="xl"
+            placeholder="Type the term you want to search"
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
@@ -54,8 +45,10 @@ const SearchFields: React.FC<SearchFieldsProps> = ({ onSearch }) => {
         )}
         name="searchTerm"
       />
-      <Button title="Search" onPress={handleSubmit(onSubmit)} />
-    </View>
+      <Button onPress={handleSubmit(onSubmit)} marginTop={3}>
+        Search
+      </Button>
+    </Box>
   );
 };
 

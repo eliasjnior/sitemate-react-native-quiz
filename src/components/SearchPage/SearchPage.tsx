@@ -1,13 +1,7 @@
 import { useState } from "react";
-import {
-  Modal,
-  RefreshControl,
-  SafeAreaView,
-  ScrollView,
-  Text,
-  TouchableOpacity
-} from "react-native";
+import { Modal, RefreshControl, SafeAreaView, ScrollView } from "react-native";
 
+import { Box, Button, Text } from "native-base";
 import { useQuery } from "react-query";
 
 import searchNewsService, {
@@ -16,6 +10,7 @@ import searchNewsService, {
 import { Article } from "../../types/news";
 import ArticleContent from "../ArticleContent/ArticleContent";
 import ArticlePreview from "../ArticlePreview/ArticlePreview";
+import LoadingStack from "../LoadingStack/LoadingStack";
 import SearchFields, { SearchFormData } from "../SearchFields/SearchFields";
 
 const SearchForm: React.FC = () => {
@@ -62,17 +57,9 @@ const SearchForm: React.FC = () => {
     <>
       <Modal visible={isModalOpen}>
         <SafeAreaView style={{ flex: 1 }}>
-          <TouchableOpacity
-            onPress={onCloseModal}
-            style={{
-              padding: 10,
-              borderWidth: 1,
-              borderColor: "black",
-              margin: 10
-            }}
-          >
-            <Text>Close article</Text>
-          </TouchableOpacity>
+          <Button m={6} onPress={onCloseModal}>
+            Close article
+          </Button>
           <ScrollView style={{ flex: 1 }}>
             {selectedArticle && <ArticleContent article={selectedArticle} />}
           </ScrollView>
@@ -90,8 +77,17 @@ const SearchForm: React.FC = () => {
           />
         }
       >
-        {isError && <Text>{error.message}</Text>}
-        {isFetching && <Text>Loading...</Text>}
+        {isError && (
+          <Box mx={6}>
+            <Text color="red.500">{error.message}</Text>
+          </Box>
+        )}
+        {isFetching && <LoadingStack />}
+        {data && data.articles.length === 0 && (
+          <Box mx={6}>
+            <Text textAlign="center">Sorry, no results found</Text>
+          </Box>
+        )}
         {data &&
           data.articles.map((article) => (
             <ArticlePreview

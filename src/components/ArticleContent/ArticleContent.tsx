@@ -1,8 +1,7 @@
 import { useMemo } from "react";
-import { Text, View } from "react-native";
 
-import { format, formatDistanceToNow } from "date-fns";
-import { WebView } from "react-native-webview";
+import { formatDistanceToNow } from "date-fns";
+import { Box, Heading, Text } from "native-base";
 import sanitizeHtml from "sanitize-html";
 
 import { Article } from "../../types/news";
@@ -23,12 +22,15 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ article }) => {
   );
 
   return (
-    <View style={{ flex: 1 }}>
-      <Text style={{ fontSize: 20 }}>{article.title}</Text>
-      <Text style={{ color: "gray" }}>{formattedDate} ago</Text>
-      <View style={{ backgroundColor: "yellow", flex: 1 }} />
-      <Text>{sanitizedContent}</Text>
-    </View>
+    <Box m={6}>
+      <Heading size="md" mb={2}>
+        {article.title}
+      </Heading>
+      <Text fontSize="xs" color="gray.500">
+        {formattedDate} ago
+      </Text>
+      <Text mt={4}>{sanitizedContent}</Text>
+    </Box>
   );
 };
 

@@ -1,7 +1,8 @@
 import React, { useMemo } from "react";
-import { Text, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 
 import { format } from "date-fns";
+import { Box, Heading, Text } from "native-base";
 import sanitizeHtml from "sanitize-html";
 
 import { Article } from "../../types/news";
@@ -29,20 +30,22 @@ const ArticlePreview: React.FC<ArticlePreviewProps> = ({
   );
 
   return (
-    <TouchableOpacity
-      style={{
-        borderWidth: 1,
-        borderColor: "black",
-        padding: 10,
-        marginVertical: 5,
-        marginHorizontal: 5
-      }}
-      onPress={onPress}
+    <Box
+      borderColor="coolGray.200"
+      borderWidth={1}
+      marginX={6}
+      marginY={2}
+      padding={6}
+      borderRadius={5}
     >
-      <Text style={{ fontSize: 20 }}>{article.title}</Text>
-      <Text style={{ color: "gray" }}>Published at: {formattedDate}</Text>
-      <Text style={{ fontSize: 12 }}>{sanitizedDescription}</Text>
-    </TouchableOpacity>
+      <TouchableOpacity onPress={onPress}>
+        <Heading size="md">{article.title}</Heading>
+        <Text fontSize="xs" color="gray.500">
+          Published at: {formattedDate}
+        </Text>
+        <Text fontWeight="400">{sanitizedDescription}</Text>
+      </TouchableOpacity>
+    </Box>
   );
 };
 
