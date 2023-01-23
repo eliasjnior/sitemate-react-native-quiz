@@ -39,7 +39,6 @@
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-props-no-spreading": "off",
     "newline-before-return": "error",
-    // "no-use-before-define": "off",
     "import-helpers/order-imports": [
       "error",
       {
@@ -65,7 +64,7 @@
     "react/function-component-definition": [
       "error",
       {
-        "namedComponents": ["function-declaration", "arrow-function"]
+        "namedComponents": ["function-declaration", "function-expression", "arrow-function"]
       }
     ]
   }
